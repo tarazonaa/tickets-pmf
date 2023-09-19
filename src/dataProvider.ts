@@ -1,7 +1,7 @@
 import { DataProvider, fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
-const apiUrl = "http://localhost:8000";
+const apiUrl = "https://backend-tickets-pmf.glitch.me";
 const httpClient = fetchUtils.fetchJson;
 
 export const dataProvider: DataProvider = {
@@ -16,6 +16,7 @@ export const dataProvider: DataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     const { headers, json } = await httpClient(url);
+    console.log(json.data);
     return {
       data: json.data,
       total: parseInt(
@@ -34,7 +35,7 @@ export const dataProvider: DataProvider = {
     const query = {
       filter: JSON.stringify({ id: params.ids }),
     };
-    const url = `${apiUrl}/${resource}?${stringify(query)}`;
+    const url = `${apiUrl}/${resource}`;
     const { json } = await httpClient(url);
     return { data: json.data };
   },
