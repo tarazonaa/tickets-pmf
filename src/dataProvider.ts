@@ -16,7 +16,7 @@ export const dataProvider: DataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     const { headers, json } = await httpClient(url);
-    console.log(json.data);
+    console.log(json);
     return {
       data: json.data,
       total: parseInt(
