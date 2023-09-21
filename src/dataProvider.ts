@@ -16,13 +16,10 @@ export const dataProvider: DataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     const { headers, json } = await httpClient(url);
-    console.log(json);
+    console.log(json.data);
     return {
       data: json.data,
-      total: parseInt(
-        (headers.get("content-range") || "0").split("/").pop() || "0",
-        10,
-      ),
+      total: json.data.length,
     };
   },
 
