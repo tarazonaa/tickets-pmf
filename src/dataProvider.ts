@@ -81,12 +81,19 @@ export const dataProvider: DataProvider = {
   },
 
   create: (resource, params) =>
-    httpClient(`${apiUrl}/${resource}`, {
-      method: "POST",
-      body: JSON.stringify(params.data),
-    }).then(({ json }) => ({
-      data: { ...params.data, id: json.id },
-    })),
+  httpClient(`${apiUrl}/${resource}`, {
+    method: "POST",
+    body: JSON.stringify(params.data),
+  }).then(({ json }) => {
+
+    return {
+      data: {
+        ...json,  
+        id: json.id
+      }
+    };
+  }),
+
 
   delete: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
