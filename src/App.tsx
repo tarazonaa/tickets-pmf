@@ -13,10 +13,11 @@ import { CreateTicket } from "./Components/create/CreateTicket";
 import { Route } from "react-router-dom";
 import Dashboard from "./Components/dashboard/Dashboard";
 import { TicketShow } from "./Components/show/TicketShow";
+import { PMFTheme } from "./Components/theme/PMFTheme";
 
 export const App = () => {
   return (
-    <Admin dataProvider={dataProvider}>
+    <Admin theme={PMFTheme} dataProvider={dataProvider}>
       <CustomRoutes>
         <Route path="/" element={<Dashboard />}/>
       </CustomRoutes>

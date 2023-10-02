@@ -18,8 +18,8 @@ export const dataProvider: DataProvider = {
     const { headers, json } = await httpClient(url);
     console.log(json.data);
     return {
-      data: json.data,
-      total: json.data.length,
+      data: json,
+      total: json.length,
     };
   },
 
