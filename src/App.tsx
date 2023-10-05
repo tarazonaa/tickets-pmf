@@ -14,14 +14,13 @@ import { Route } from "react-router-dom";
 import Dashboard from "./Components/dashboard/Dashboard";
 import { TicketShow } from "./Components/show/TicketShow";
 import { PMFTheme } from "./Components/theme/PMFTheme";
+import { PMFLayout } from "./Components/layout/PMFLayout";
+import { TicketEdit } from "./Components/edit/EditTicket";
 
 export const App = () => {
   return (
-    <Admin theme={PMFTheme} dataProvider={dataProvider}>
-      <CustomRoutes>
-        <Route path="/" element={<Dashboard />}/>
-      </CustomRoutes>
-      <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} />
+    <Admin dashboard={Dashboard} theme={PMFTheme} dataProvider={dataProvider}>
+      <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit}/>
     </Admin>
   );
 };

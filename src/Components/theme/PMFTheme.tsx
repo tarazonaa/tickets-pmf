@@ -12,7 +12,7 @@ export const PMFTheme = {
         },
         background: {
           default: '#F1DBBF',
-          paper: '#F1DBBF',
+          paper: '#fff',
         },
         divider: '#B99B6B',
       },

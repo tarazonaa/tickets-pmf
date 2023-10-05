@@ -16,7 +16,6 @@ export const dataProvider: DataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     const { headers, json } = await httpClient(url);
-    console.log(json.data);
     return {
       data: json,
       total: json.length,
@@ -25,7 +24,7 @@ export const dataProvider: DataProvider = {
 
   getOne: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-      data: json.data,
+      data: json,
     })),
 
   getMany: async (resource, params) => {

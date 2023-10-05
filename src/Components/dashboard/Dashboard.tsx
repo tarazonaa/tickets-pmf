@@ -1,14 +1,9 @@
-import * as React from "react";
-import { Card, CardContent } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import { Title } from 'react-admin';
-
-const Dashboard = () => (
+export default () => (
     <Card>
-        <Title title="Dashboard" />
-        <CardContent>
-            ...
-        </CardContent>
+        <Title title="Welcome to the administration" />
+        <CardContent>Lorem ipsum sic dolor amet...</CardContent>
     </Card>
 );
-
-export default Dashboard;

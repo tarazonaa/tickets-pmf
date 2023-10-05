@@ -1,14 +1,17 @@
+import { useState } from "react";
 import {
-  Create,
+  DateInput,
+  Edit,
+  SelectInput,
   SimpleForm,
   TextInput,
   required,
-  SelectInput,
   useGetList,
+  useRecordContext,
 } from "react-admin";
-import { useState } from "react";
 
-export const CreateTicket = () => {
+export const TicketEdit = () => {
+    const record = useRecordContext();
   const [selectedCategory, setSelectedCategory] = useState("");
   const { data, isLoading } = useGetList("categories");
 
@@ -46,9 +49,12 @@ export const CreateTicket = () => {
       }
     );
   }
+  console.log(record)
+
   return (
-    <Create>
+    <Edit>
       <SimpleForm>
+        <TextInput source="id" disabled />
         <TextInput source="title" validate={[required()]} label="Título" />
         <SelectInput
           source="categoryId"
@@ -58,9 +64,9 @@ export const CreateTicket = () => {
           optionValue="id"
           validate={[required()]}
           isLoading={isLoading}
-          onChange={(e:any) => setSelectedCategory(e.target.value)}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        //   onLoad={(e) => setSelectedCategory(e.target.value)}
         />
-
         <SelectInput
           source="subcategoryIndex"
           label="Subcategoria"
@@ -75,7 +81,6 @@ export const CreateTicket = () => {
           validate={[required()]}
           isLoading={isLoading}
         />
-
         <SelectInput
           validate={[required()]}
           source="priority"
@@ -96,6 +101,7 @@ export const CreateTicket = () => {
             { id: 2, name: "Cerrado" },
           ]}
         />
+        <TextInput source="intermediaries" />
         <TextInput
           source="description"
           multiline={true}
@@ -110,12 +116,9 @@ export const CreateTicket = () => {
           validate={validateClosing}
           sx={{ width: "50%" }}
         />
+        <DateInput source="createdAt" disabled />
+        <DateInput source="closedAt" disabled />
       </SimpleForm>
-    </Create>
+    </Edit>
   );
 };
-
-// Need to fetch /categories has subcategories. So it is a dropdowm with subcategories.
-// Needd to fetch from /categories the index of subcategories.
-// NOT YET IMPLEMENTED:
-// source="classroomId"

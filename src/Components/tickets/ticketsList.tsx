@@ -4,11 +4,11 @@ export const TicketList = () => (
   <List>
     <Datagrid rowClick="edit">
       <TextField source="id" />
-      <TextField source="name" />
-      <TextField source="description" />
-      <TextField source="status" />
-      <TextField source="priority" />
-      <DateField source="created_at" />
+      <TextField source="title" label="Titulo"/>  
+      <TextField source="description" label="Descripcion"/>
+      <TextField source="status" label="Estatus"/>
+      <TextField source="priority" label="Prioridad" />
+      <DateField source="createdAt" label="Fecha de creacion"/>
     </Datagrid>
   </List>
 );
