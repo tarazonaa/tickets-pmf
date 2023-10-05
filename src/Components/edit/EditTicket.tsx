@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DateInput,
   Edit,
@@ -8,12 +8,33 @@ import {
   required,
   useGetList,
   useRecordContext,
+  // useGetOne,
+  // RecordContextProvider,
 } from "react-admin";
 
-export const TicketEdit = () => {
-    const record = useRecordContext();
-  const [selectedCategory, setSelectedCategory] = useState("");
+interface TicketRecord {
+  _id: string;
+  title: string;
+  categoryId: string;
+  subcategoryIndex: number;
+  priority: number;
+  intermediaries: string;
+  description: string;
+  status: number;
+  createdAt: string;
+  id: number;
+  closedAt: string;
+}
+export const TicketEdit = (props: any) => {
+  const record = useRecordContext<TicketRecord>();
+  const [selectedCategory, setSelectedCategory] = useState(
+    record?.categoryId || ""
+  );
   const { data, isLoading } = useGetList("categories");
+
+  const handleSelectCategory = (id: string) => {
+    setSelectedCategory(id);
+  };
 
   const validateDescription = (value: string) => {
     if (value && value.length > 500) {
@@ -49,24 +70,20 @@ export const TicketEdit = () => {
       }
     );
   }
-  console.log(record)
 
-  return (
-    <Edit>
-      <SimpleForm>
-        <TextInput source="id" disabled />
-        <TextInput source="title" validate={[required()]} label="Título" />
-        <SelectInput
-          source="categoryId"
-          label="Categoría"
-          choices={data}
-          optionText="name"
-          optionValue="id"
-          validate={[required()]}
-          isLoading={isLoading}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        //   onLoad={(e) => setSelectedCategory(e.target.value)}
-        />
+  const EditWithContext = () => {
+    const record = useRecordContext<TicketRecord>();
+    useEffect(() => {
+      if (selectedCategory !== "") {
+        handleSelectCategory(selectedCategory);
+      } else {
+        if (record) {
+          handleSelectCategory(record.categoryId);
+        }
+      }
+    }, [record]);
+    return (
+      subcategories.length > 0 && (
         <SelectInput
           source="subcategoryIndex"
           label="Subcategoria"
@@ -80,7 +97,28 @@ export const TicketEdit = () => {
           optionValue="index"
           validate={[required()]}
           isLoading={isLoading}
+          defaultValue={record?.subcategoryIndex || 0}
         />
+      )
+    );
+  };
+
+  return (
+    <Edit {...props}>
+      <SimpleForm>
+        <TextInput source="id" disabled />
+        <TextInput source="title" validate={[required()]} label="Título" />
+        <SelectInput
+          source="categoryId"
+          label="Categoría"
+          choices={data}
+          optionText="name"
+          optionValue="id"
+          validate={[required()]}
+          isLoading={isLoading}
+          onChange={(e) => handleSelectCategory(e.target.value)}
+        />
+        <EditWithContext />
         <SelectInput
           validate={[required()]}
           source="priority"
