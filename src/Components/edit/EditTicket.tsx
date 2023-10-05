@@ -13,7 +13,6 @@ import {
 } from "react-admin";
 
 interface TicketRecord {
-  _id: string;
   title: string;
   categoryId: string;
   subcategoryIndex: number;
