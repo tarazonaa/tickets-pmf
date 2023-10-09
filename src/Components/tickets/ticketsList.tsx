@@ -2,8 +2,6 @@ import {
   Datagrid,
   DateField,
   List,
-  ReferenceField,
-  Resource,
   TextField,
   useGetList,
   useRecordContext,
@@ -29,8 +27,6 @@ interface TicketRecord {
 }
 
 export const TicketList = () => {
-
-
   const StatusReturner = () => {
     const record = useRecordContext<TicketRecord>();
     switch (record.status) {
@@ -67,7 +63,6 @@ export const TicketList = () => {
     label: "Prioridad",
   };
 
-  
   const CategoryReturner = () => {
     const record = useRecordContext<TicketRecord>();
     const { data: CatData, isLoading } = useGetList("categories");
@@ -100,15 +95,15 @@ export const TicketList = () => {
 
   return (
     <List>
-      <Datagrid rowClick="edit">
+      <Datagrid rowClick="show">
         <TextField source="id" />
-        <TextField source="title" label="Titulo" />
-        <TextField source="description" label="Descripcion" />
+        <TextField source="title" label="Título" />
+        <TextField source="description" label="Descripción" />
         <CategoryReturner />
         <SubCategoryReturner />
         <StatusReturner />
         <PriorityReturner />
-        <DateField source="createdAt" label="Fecha de creacion" />
+        <DateField source="createdAt" label="Fecha de creación" />
         <TextField source="intermediaries" label="Intermediarios" />
         <TextField source="closedAt" label="Fecha de cierre" />
         <TextField source="closingComment" label="Comentario de cierre" />

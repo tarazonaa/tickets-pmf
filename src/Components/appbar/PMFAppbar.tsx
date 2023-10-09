@@ -1,22 +1,38 @@
 import { Toolbar, Box } from "@mui/material";
-import { AppBar, TitlePortal, RefreshIconButton } from "react-admin";
+import { RefreshIconButton } from "react-admin";
+import { AppBar, TitlePortal } from "react-admin";
 import { Theme, useMediaQuery } from "@mui/material";
+import Logo from "../../utils/Logo/Logo";
 
 export const PMFAppbar = () => {
-  const isXsmall = useMediaQuery<Theme>((theme) => theme.breakpoints.up("sm"));
+  const isXsmall = useMediaQuery<Theme>((theme) =>
+    theme.breakpoints.down("sm")
+  );
 
   return isXsmall ? (
-    <AppBar sx={{
-      display: "block",
-      zIndex: 3,
-    }}>
+    <AppBar
+      sx={{
+        height: "50px",
+        "& .RaAppBar-toolbar": {
+          height: "50px",
+        },
+      }}
+    >
       <TitlePortal />
-      <Box flex="1" />
     </AppBar>
   ) : (
-    <AppBar>
+    <AppBar
+      sx={{
+        height: "64px",
+        "& .RaAppBar-toolbar": {
+          height: "64px",
+        },
+      }}
+    >
       <TitlePortal />
       <Box flex="1" />
+      <Logo />
+      <Box flex="2" />
     </AppBar>
   );
 };

@@ -13,14 +13,34 @@ import { CreateTicket } from "./Components/create/CreateTicket";
 import { Route } from "react-router-dom";
 import Dashboard from "./Components/dashboard/Dashboard";
 import { TicketShow } from "./Components/show/TicketShow";
-import { PMFTheme } from "./Components/theme/PMFTheme";
+import { PMFThemeLight } from "./Components/theme/PMFTheme-Light";
 import { PMFLayout } from "./Components/layout/PMFLayout";
 import { TicketEdit } from "./Components/edit/EditTicket";
+import { PMFThemeDark } from "./Components/theme/PMFTheme-Dark";
 
 export const App = () => {
   return (
-    <Admin dashboard={Dashboard} theme={PMFTheme} dataProvider={dataProvider}>
-      <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit}/>
+    <Admin
+      dashboard={Dashboard}
+      theme={PMFThemeLight}
+      darkTheme={PMFThemeDark}
+      dataProvider={dataProvider}
+      layout={PMFLayout}
+        // layout={(props) => (
+        //   <PMFLayout
+        //     {...props}
+        //     children={props.children}
+        //     dashboard={props.dashboard}
+        //   />
+      // )}
+    >
+      <Resource
+        name="tickets"
+        list={TicketList}
+        create={CreateTicket}
+        show={TicketShow}
+        edit={TicketEdit}
+      />
     </Admin>
   );
 };
