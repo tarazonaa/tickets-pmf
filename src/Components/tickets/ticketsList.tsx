@@ -2,10 +2,17 @@ import {
   Datagrid,
   DateField,
   List,
+  RichTextField,
+  SimpleShowLayout,
   TextField,
   useGetList,
   useRecordContext,
+  EditButton,
+  ShowButton,
+  Labeled,
 } from "react-admin";
+
+import Box from "@mui/material/Box";
 
 interface CategoryData {
   id: string;
@@ -93,16 +100,50 @@ export const TicketList = () => {
     label: "Subcategoria",
   };
 
+  const DescShow = () => (
+    <SimpleShowLayout>
+      <RichTextField source="description" label="Descripción" />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Labeled label={false}>
+          <ShowButton label="Ver Ticket" />
+        </Labeled>
+        <Labeled label={false}>
+          <EditButton label="Editar Ticket" />
+        </Labeled>
+      </Box>
+    </SimpleShowLayout>
+  );
+
   return (
     <List>
-      <Datagrid rowClick="show" sx={{
-        "& .MuiTableCell-head": {
-          fontWeight: "bold",
-        }
-      }}>
+      <Datagrid
+        rowClick="expand"
+        sx={{
+          "& .MuiTableCell-head": {
+            fontWeight: "bold",
+          },
+          "& .column-description": {
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            maxWidth: "200px",
+            textOverflow: "ellipsis",
+          },
+        }}
+        expand={<DescShow />}
+        expandSingle
+      >
         <TextField source="id" />
         <TextField source="title" label="Título" />
-        <TextField source="description" label="Descripción" />
+        <TextField
+          source="description"
+          label="Descripción"
+          sx={{ textOverflow: "ellipsis" }}
+        />
         <CategoryReturner />
         <SubCategoryReturner />
         <StatusReturner />

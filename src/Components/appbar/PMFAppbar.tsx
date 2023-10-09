@@ -3,7 +3,7 @@ import { RefreshIconButton } from "react-admin";
 import { AppBar, TitlePortal } from "react-admin";
 import { Theme, useMediaQuery } from "@mui/material";
 import Logo from "../../utils/Logo/Logo";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const PMFAppbar = () => {
   const isXsmall = useMediaQuery<Theme>((theme) =>
@@ -28,20 +28,24 @@ export const PMFAppbar = () => {
     <AppBar
       sx={{
         height: "64px",
+
         "& .RaAppBar-toolbar": {
           height: "64px",
         },
         "& .RaConfigurable-root": {
           fontWeight: "bold",
+          marginLeft: "20px",
+        },
+        "& .RaAppBar-menuButton": {
+          display: "none",
         },
       }}
     >
       <TitlePortal />
-      <Box flex="1" />
       <Link to="/">
-      <Logo />
+        <Logo />
       </Link>
-      <Box flex="2" />
+      <Box sx={{ flexGrow: .875 }} />
     </AppBar>
   );
 };

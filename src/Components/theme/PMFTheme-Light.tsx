@@ -27,6 +27,6 @@ export const PMFThemeLight = {
   },
   sidebar: {
     width: 150, // The default value is 240
-    closedWidth: 5, // The default value is 55
+    closedWidth: 55, // The default value is 55
   },
 };

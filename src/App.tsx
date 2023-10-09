@@ -26,13 +26,6 @@ export const App = () => {
       darkTheme={PMFThemeDark}
       dataProvider={dataProvider}
       layout={PMFLayout}
-        // layout={(props) => (
-        //   <PMFLayout
-        //     {...props}
-        //     children={props.children}
-        //     dashboard={props.dashboard}
-        //   />
-      // )}
     >
       <Resource
         name="tickets"

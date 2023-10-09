@@ -16,7 +16,7 @@ import { useLocale, useSidebarState } from "react-admin";
 export const PMFMenu = () => {
   const [open, setOpen] = useSidebarState();
 
-  const toggleSidebar = () => setOpen(!open);
+  const toggleSidebar = () => setOpen(false);
 
   return (
     <Menu>
