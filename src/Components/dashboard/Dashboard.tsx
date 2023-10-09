@@ -3,7 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import { Title } from 'react-admin';
 export default () => (
     <Card>
-        <Title title="Welcome to the administration" />
+        <Title title="Dashboard" />
         <CardContent>Lorem ipsum sic dolor amet...</CardContent>
     </Card>
 );

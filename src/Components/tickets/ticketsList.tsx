@@ -95,7 +95,11 @@ export const TicketList = () => {
 
   return (
     <List>
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" sx={{
+        "& .MuiTableCell-head": {
+          fontWeight: "bold",
+        }
+      }}>
         <TextField source="id" />
         <TextField source="title" label="Título" />
         <TextField source="description" label="Descripción" />

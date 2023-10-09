@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
-import { Logout, Menu, RefreshIconButton, UserMenu } from "ra-ui-materialui";
-import { Theme, useMediaQuery } from "@mui/material";
+import { Menu } from "ra-ui-materialui";
+import { useState } from "react";
+import { useLocale, useSidebarState } from "react-admin";
 
 // const RefreshListButton = () => (
 //   <WithListContext
@@ -13,27 +14,16 @@ import { Theme, useMediaQuery } from "@mui/material";
 // );
 
 export const PMFMenu = () => {
-  const isXsmall = useMediaQuery<Theme>((theme) => theme.breakpoints.up  ("sm"));
-  return isXsmall ? (
-  <Menu>
-    <Menu.DashboardItem />
-    <Menu.ResourceItem name="tickets" />
-    <Box
-    mt={60}>
-      <RefreshIconButton sx={{ marginLeft: "9px" }} />
-      <Logout />
-    </Box>
-  </Menu>
-) : (
-  <Menu>
-    <Menu.DashboardItem />
-    <Menu.ResourceItem name="tickets" />
-    <Box
-    sx={{
-      marginTop: 75,
-    }}>
-      <Logout />
-    </Box>
-  </Menu>
-);
+  const [open, setOpen] = useSidebarState();
+
+  const toggleSidebar = () => setOpen(!open);
+
+  return (
+    <Menu>
+      <Menu.DashboardItem onClick={toggleSidebar} />
+      <div onClick={toggleSidebar}>
+        <Menu.ResourceItem name="tickets" />
+      </div>
+    </Menu>
+  );
 };

@@ -14,5 +14,6 @@ export const PMFLayout = (props: LayoutProps) => (
         paddingTop: "10px",
       },
     }}
+    menu={PMFMenu}
   />
 );

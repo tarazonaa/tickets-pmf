@@ -29,7 +29,6 @@ interface TicketRecord {
 }
 
 export const TicketShow = () => {
-
   const StatusReturner = () => {
     const record = useRecordContext<TicketRecord>();
     switch (record.status) {
@@ -78,7 +77,7 @@ export const TicketShow = () => {
   };
 
   CategoryReturner.defaultProps = {
-    label: "Categoria",
+    label: "Categoría",
   };
 
   const SubCategoryReturner = () => {
@@ -93,18 +92,23 @@ export const TicketShow = () => {
   };
 
   SubCategoryReturner.defaultProps = {
-    label: "Subcategoria",
+    label: "Subcategoría",
   };
-
-
-
 
   return (
     <Show>
-      <SimpleShowLayout>
-      <TextField source="id" />
-        <TextField source="title" label="Titulo" />
-        <RichTextField source="description" label="Descripcion" />
+      <SimpleShowLayout sx={{
+        '& .MuiTypography-root':{
+          fontSize: '15px',
+        },
+        "& .MuiTypography-body1 span": {
+          fontSize: "16px",
+          fontWeight: "bold",
+        },
+      }}>
+        <TextField source="id" />
+        <TextField source="title" label="Título" />
+        <RichTextField source="description" label="Descripción" />
         <CategoryReturner />
         <SubCategoryReturner />
         <StatusReturner />
