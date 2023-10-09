@@ -45,7 +45,7 @@ export const PMFAppbar = () => {
       <Link to="/">
         <Logo />
       </Link>
-      <Box sx={{ flexGrow: .875 }} />
+      <Box sx={{ flexGrow: .9  }} />
     </AppBar>
   );
 };
