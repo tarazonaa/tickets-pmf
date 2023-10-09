@@ -2,6 +2,7 @@ import { DataProvider, fetchUtils } from "react-admin";
 import { stringify } from "query-string";
 
 const apiUrl = "https://backend-tickets-pmf.glitch.me";
+// const apiUrl = "http://localhost:8080";
 const httpClient = fetchUtils.fetchJson;
 
 export const dataProvider: DataProvider = {
@@ -16,16 +17,15 @@ export const dataProvider: DataProvider = {
     const url = `${apiUrl}/${resource}?${stringify(query)}`;
 
     const { headers, json } = await httpClient(url);
-    console.log(json.data);
     return {
-      data: json.data,
-      total: json.data.length,
+      data: json,
+      total: json.length,
     };
   },
 
   getOne: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-      data: json.data,
+      data: json,
     })),
 
   getMany: async (resource, params) => {
@@ -55,7 +55,7 @@ export const dataProvider: DataProvider = {
       data: json.data,
       total: parseInt(
         (headers.get("content-range") || "0").split("/").pop() || "0",
-        10,
+        10
       ),
     };
   },
@@ -75,25 +75,23 @@ export const dataProvider: DataProvider = {
       {
         method: "PUT",
         body: JSON.stringify(params.data),
-      },
+      }
     );
     return { data: json.data };
   },
 
   create: (resource, params) =>
-  httpClient(`${apiUrl}/${resource}`, {
-    method: "POST",
-    body: JSON.stringify(params.data),
-  }).then(({ json }) => {
-
-    return {
-      data: {
-        ...json,  
-        id: json.id
-      }
-    };
-  }),
-
+    httpClient(`${apiUrl}/${resource}`, {
+      method: "POST",
+      body: JSON.stringify(params.data),
+    }).then(({ json }) => {
+      return {
+        data: {
+          ...json,
+          id: json.id,
+        },
+      };
+    }),
 
   delete: (resource, params) =>
     httpClient(`${apiUrl}/${resource}/${params.id}`, {
@@ -108,7 +106,7 @@ export const dataProvider: DataProvider = {
       `${apiUrl}/${resource}?${stringify(query)}`,
       {
         method: "DELETE",
-      },
+      }
     );
     return { data: json.data };
   },

@@ -1,0 +1,11 @@
+img {
+    transition: transform 0.2s, box-shadow 0.2s; /* Adjust the time to make the transition faster */
+    max-width: 100%; /* This will ensure the image does not grow too large */
+    max-height: auto;
+    border-radius: 50%; /* Adjust accordingly to maintain aspect ratio */
+}
+
+img:hover {
+    transform: scale(1.08);
+    box-shadow: 0px 0px 10px 5px white; /* Adjust the scale value to your preference */
+}
