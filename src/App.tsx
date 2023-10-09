@@ -17,12 +17,16 @@ import { PMFThemeLight } from "./Components/theme/PMFTheme-Light";
 import { PMFLayout } from "./Components/layout/PMFLayout";
 import { TicketEdit } from "./Components/edit/EditTicket";
 import { PMFThemeDark } from "./Components/theme/PMFTheme-Dark";
+import authProvider from "./authProvider";
+import MyLoginPage from "./MyLoginPage";
 
 export const App = () => {
   return (
     <Admin
       dashboard={Dashboard}
       theme={PMFThemeLight}
+      loginPage={MyLoginPage as any} 
+      authProvider={authProvider}
       darkTheme={PMFThemeDark}
       dataProvider={dataProvider}
       layout={PMFLayout}
