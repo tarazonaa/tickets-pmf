@@ -145,6 +145,7 @@ export const TicketList = () => {
          >
             <TextField source="id" />
             <TextField source="title" label="Título" />
+            <TextField source="assignee" label="Responsable" />
             <TextField source="description" label="Descripción" sx={{textOverflow: "ellipsis"}} />
             <CategoryReturner />
             <SubCategoryReturner />
@@ -152,7 +153,7 @@ export const TicketList = () => {
             <PriorityReturner />
             <DateField source="createdAt" label="Fecha de creación" />
             <TextField source="intermediaries" label="Intermediarios" />
-            <TextField source="closedAt" label="Fecha de cierre" />
+            <DateField source="closedAt" label="Fecha de cierre" />
             <TextField source="closingComment" label="Proceso de resolución" />
          </Datagrid>
       </List>

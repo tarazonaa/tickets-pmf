@@ -101,6 +101,7 @@ export const TicketEdit = (props: any) => {
          <SimpleForm>
             <TextInput source="id" disabled />
             <TextInput source="title" validate={[required()]} label="Título" />
+            <TextInput source="assignee" validate={[required()]} label="Responsable" />
             <SelectInput
                source="categoryId"
                label="Categoría"

@@ -39,6 +39,7 @@ export const CreateTicket = () => {
       <Create>
          <SimpleForm>
             <TextInput source="title" validate={[required()]} label="Título" />
+            <TextInput source="assignee" validate={[required()]} label="Responsable" />
             <SelectInput
                source="categoryId"
                label="Categoría"
