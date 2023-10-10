@@ -35,11 +35,13 @@ export const CreateTicket = () => {
          })
       })
    }
+   const username = localStorage.getItem("username")
    return (
       <Create>
          <SimpleForm>
             <TextInput source="title" validate={[required()]} label="Título" />
             <TextInput source="assignee" validate={[required()]} label="Responsable" />
+            <TextInput source="reportedBy" disabled label="Reportado por" defaultValue={username} />
             <SelectInput
                source="categoryId"
                label="Categoría"

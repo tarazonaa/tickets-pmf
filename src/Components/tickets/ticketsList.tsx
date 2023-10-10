@@ -146,6 +146,7 @@ export const TicketList = () => {
             <TextField source="id" />
             <TextField source="title" label="Título" />
             <TextField source="assignee" label="Responsable" />
+            <TextField source="reportedBy" label="Reportado por" />
             <TextField source="description" label="Descripción" sx={{textOverflow: "ellipsis"}} />
             <CategoryReturner />
             <SubCategoryReturner />
