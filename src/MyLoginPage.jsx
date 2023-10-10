@@ -4,20 +4,52 @@ import styled from 'styled-components';
 import { Form } from 'react-admin';
 import logo from '../logo.svg';
 import { useLogin, useNotify, Notification } from 'react-admin';
+import background from '../background.jpeg';
+import companyLogo from '../pmf_logo.png'; 
+
+const CompanyLogo = styled.img`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 100px;   
+    height: 100px;  
+    object-fit: contain; 
+    z-index: 2;
+`;
+
+
 
 const LoginPageWrapper = styled.div`
+    position: relative;
+    z-index: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f1dbbf;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url(${background});
+        background-size: cover; 
+        background-position: center; 
+        z-index: -1; 
+        background-color: rgba(0, 0, 0, 0.5);
+        mix-blend-mode: multiply;
+    }
 `;
 
+
 const LoginBox = styled.div`
-    background-color: #ffffff;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     padding: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
     width: 300px;
     text-align: center;
 `;
@@ -66,6 +98,7 @@ const MyLoginPage = ({ theme }) => {
 
     return (
         <LoginPageWrapper>
+            <CompanyLogo src={companyLogo} alt="Company Logo" />
             <LoginBox>
                 <Logo src="../logo.svg" alt="Logo"/> 
                 <Form onSubmit={handleSubmit}>
