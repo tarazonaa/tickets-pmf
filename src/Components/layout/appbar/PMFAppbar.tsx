@@ -2,7 +2,7 @@ import { Toolbar, Box } from "@mui/material";
 import { RefreshIconButton } from "react-admin";
 import { AppBar, TitlePortal } from "react-admin";
 import { Theme, useMediaQuery } from "@mui/material";
-import Logo from "../../utils/Logo/Logo";
+import Logo from "../../../utils/Logo/Logo";
 import { Link } from "react-router-dom";
 
 export const PMFAppbar = () => {

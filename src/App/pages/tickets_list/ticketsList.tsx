@@ -13,7 +13,6 @@ import {
 } from "react-admin"
 
 import Box from "@mui/material/Box"
-import {Class} from "@mui/icons-material"
 
 interface CategoryData {
    id: string

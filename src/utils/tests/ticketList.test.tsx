@@ -3,7 +3,7 @@ import { render, screen, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Admin, Resource } from "react-admin";
 import { TicketList } from "../tickets/ticketsList";
-import { dataProvider } from "../dataProvider";
+import { dataProvider } from "../../App/Connection/dataProvider";
 
 describe("TicketList", () => {
   it("should render <TicketList />", async () => {
