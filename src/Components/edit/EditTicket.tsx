@@ -27,6 +27,7 @@ interface TicketRecord {
 export const TicketEdit = (props: any) => {
    const record = useRecordContext<TicketRecord>()
    const [selectedCategory, setSelectedCategory] = useState(record?.categoryId || "")
+   const [selectedStatus, setSelectedStatus] = useState(0)
    const {data, isLoading} = useGetList("categories")
 
    const handleSelectCategory = (id: string) => {
@@ -63,7 +64,27 @@ export const TicketEdit = (props: any) => {
          })
       })
    }
-
+   const ClassroomSelector = () => {
+      const {data: classrooms, isLoading} = useGetList("classrooms")
+      if (isLoading) return <span>Cargando...</span>
+      return (
+         <SelectInput
+            source="classroomId"
+            label="Aula"
+            choices={
+               classrooms
+                  ? classrooms.map((classroom: any) => {
+                       return {
+                          id: classroom.id,
+                          name: classroom.name,
+                       }
+                    })
+                  : []
+            }
+            emptyText={"Sin especificar"}
+         />
+      )
+   }
    const EditWithContext = () => {
       const record = useRecordContext<TicketRecord>()
       useEffect(() => {
@@ -95,14 +116,15 @@ export const TicketEdit = (props: any) => {
          )
       )
    }
-
+   const username = localStorage.getItem("username")
    return (
       <Edit {...props}>
          <SimpleForm>
             <TextInput source="id" disabled />
             <TextInput source="title" validate={[required()]} label="Título" />
+            <ClassroomSelector />
             <TextInput source="assignee" validate={[required()]} label="Responsable" />
-            <TextInput source="reportedBy" disabled validate={[required()]} label="Reportado por" />
+            <TextInput source="reportedBy" disabled validate={[required()]} label="Reportado por" defaultValue={username} />
             <SelectInput
                source="categoryId"
                label="Categoría"
@@ -133,6 +155,7 @@ export const TicketEdit = (props: any) => {
                   {id: 1, name: "En progreso"},
                   {id: 2, name: "Cerrado"},
                ]}
+               onChange={(e) => setSelectedStatus(e.target.value)}
             />
             <TextInput source="intermediaries" />
             <TextInput
@@ -149,6 +172,7 @@ export const TicketEdit = (props: any) => {
                validate={validateClosing}
                sx={{width: "50%"}}
             />
+            <TextInput source="govTrackidId" label="Folio de Oficio" />
             <DateInput source="createdAt" disabled />
             <DateInput source="closedAt" disabled />
          </SimpleForm>

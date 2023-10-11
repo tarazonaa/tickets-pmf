@@ -10,11 +10,10 @@ import {
    EditButton,
    ShowButton,
    Labeled,
-   TextInput,
-   SearchInput,
 } from "react-admin"
 
 import Box from "@mui/material/Box"
+import {Class} from "@mui/icons-material"
 
 interface CategoryData {
    id: string
@@ -33,6 +32,13 @@ interface TicketRecord {
    createdAt: string
    id: number
    closedAt: string
+   classroomId: number
+}
+
+interface ClassroomRecord {
+   name: string
+   id: number
+   tickets: number[]
 }
 
 export const TicketList = () => {
@@ -121,10 +127,20 @@ export const TicketList = () => {
       </SimpleShowLayout>
    )
 
-   // const ticketFilters = [
-   //   <SearchInput source="q" alwaysOn />,
-   // ];
+   const ClassroomReturner = () => {
+      const record = useRecordContext<TicketRecord>()
+      const {data: ClassData, isLoading} = useGetList("classrooms")
+      if (isLoading) return <span>Cargando...</span>
+      const classrooms = ClassData as ClassroomRecord[]
+      const classroom = classrooms.find((classroom) => {
+         return classroom.id === record.classroomId
+      })
+      return <span>{classroom?.name}</span>
+   }
 
+   ClassroomReturner.defaultProps = {
+      label: "Aula",
+   }
    return (
       <List>
          <Datagrid
@@ -144,6 +160,7 @@ export const TicketList = () => {
             expandSingle
          >
             <TextField source="id" />
+            <ClassroomReturner />
             <TextField source="title" label="Título" />
             <TextField source="assignee" label="Responsable" />
             <TextField source="reportedBy" label="Reportado por" />
@@ -156,6 +173,7 @@ export const TicketList = () => {
             <TextField source="intermediaries" label="Intermediarios" />
             <DateField source="closedAt" label="Fecha de cierre" />
             <TextField source="closingComment" label="Proceso de resolución" />
+            <TextField source="govTrackingId" label="Folio de Oficio" />
          </Datagrid>
       </List>
    )

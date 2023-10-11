@@ -3,6 +3,7 @@ import {useState} from "react"
 
 export const CreateTicket = () => {
    const [selectedCategory, setSelectedCategory] = useState("")
+   const [selectedStatus, setSelectedStatus] = useState(0)
    const {data, isLoading} = useGetList("categories")
 
    const validateDescription = (value: string) => {
@@ -35,10 +36,33 @@ export const CreateTicket = () => {
          })
       })
    }
+
+   const ClassroomSelector = () => {
+      const {data: classrooms, isLoading} = useGetList("classrooms")
+      if (isLoading) return <span>Cargando...</span>
+      return (
+         <SelectInput
+            source="classroomId"
+            label="Aula"
+            choices={
+               classrooms
+                  ? classrooms.map((classroom: any) => {
+                       return {
+                          id: classroom.id,
+                          name: classroom.name,
+                       }
+                    })
+                  : []
+            }
+            emptyText={"Sin especificar"}
+         />
+      )
+   }
    const username = localStorage.getItem("username")
    return (
       <Create>
          <SimpleForm>
+            <ClassroomSelector />
             <TextInput source="title" validate={[required()]} label="Título" />
             <TextInput source="assignee" validate={[required()]} label="Responsable" />
             <TextInput source="reportedBy" disabled label="Reportado por" defaultValue={username} />
@@ -87,6 +111,7 @@ export const CreateTicket = () => {
                   {id: 1, name: "En progreso"},
                   {id: 2, name: "Cerrado"},
                ]}
+               onChange={(e: any) => setSelectedStatus(e.target.value)}
             />
             <TextInput
                source="description"
@@ -95,13 +120,14 @@ export const CreateTicket = () => {
                sx={{width: "50%"}}
                validate={validateDescription}
             />
-            <TextInput
+            {selectedStatus === 2 && <TextInput
                source="closingComment"
                multiline={true}
                label="Proceso de resolución"
                validate={validateClosing}
                sx={{width: "50%"}}
-            />
+            />}
+            <TextInput source="govTrackingId" label="Folio de Oficio" />
          </SimpleForm>
       </Create>
    )
