@@ -36,17 +36,13 @@ export const TicketList = () => {
             <ClassroomReturner />
             <TextField source="title" label="Título" />
             <TextField source="assignee" label="Responsable" />
-            <TextField source="reportedBy" label="Reportado por" />
             <TextField source="description" label="Descripción" sx={{textOverflow: "ellipsis"}} />
             <CategoryReturner />
             <SubCategoryReturner />
             <StatusReturner />
             <PriorityReturnerList />
             <DateField source="createdAt" label="Fecha de creación" />
-            <TextField source="intermediaries" label="Intermediarios" />
-            <DateField source="closedAt" label="Fecha de cierre" />
-            <TextField source="closingComment" label="Proceso de resolución" />
-            <TextField source="govTrackingId" label="Folio de Oficio" />
+            <DateField source="closedAt" label="Fecha de cierre" />  
          </Datagrid>
       </List>
    )
