@@ -5,7 +5,7 @@ import {
 import { dataProvider } from "./Connection/dataProvider";
 import { TicketList } from "./pages/tickets_list/ticketsList";
 import { CreateTicket } from "./pages/create/CreateTicket";
-import Dashboard from "./pages/dashboard/Dashboard";
+import { Dashboard } from "./pages/dashboard/Dashboard";
 import { TicketShow } from "./pages/show/TicketShow";
 import { PMFThemeLight } from "../Custom/theme/PMFTheme-Light";
 import { PMFLayout } from "../Components/layout/PMFLayout";

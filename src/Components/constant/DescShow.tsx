@@ -14,10 +14,10 @@ export const DescShow = () => (
          }}
       >
          <Labeled label={false}>
-            <ShowButton label="Ver Ticket" />
+            <ShowButton label="Ver Ticket" size="medium" />
          </Labeled>
          <Labeled label={false}>
-            <EditButton label="Editar Ticket" />
+            <EditButton label="Editar Ticket" size="medium"/>
          </Labeled>
       </Box>
    </SimpleShowLayout>
