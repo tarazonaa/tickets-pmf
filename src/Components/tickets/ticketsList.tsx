@@ -64,11 +64,11 @@ export const TicketList = () => {
       const record = useRecordContext<TicketRecord>()
       switch (record.priority) {
          case 0:
-            return record ? <span>Baja</span> : null
+            return record ? <span style={{color: 'green'}}>Baja</span> : null
          case 1:
-            return record ? <span>Media</span> : null
+            return record ? <span style={{color: 'orange'}}>Media</span> : null
          case 2:
-            return record ? <span>Alta</span> : null
+            return record ? <span style={{color: 'red'}}>Alta</span> : null
          default:
             return <span>Baja</span>
       }
