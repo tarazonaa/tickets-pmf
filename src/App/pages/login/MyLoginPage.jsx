@@ -2,10 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Form } from 'react-admin';
-import logo from '../logo.svg';
 import { useLogin, useNotify, Notification } from 'react-admin';
-import background from '../background.jpeg';
-import companyLogo from '../pmf_logo.png'; 
+import background from '/background.jpeg';
+import companyLogo from '/pmf_logo.png'; 
 
 const CompanyLogo = styled.img`
     position: absolute;

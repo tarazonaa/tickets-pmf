@@ -1,63 +1,16 @@
 import {Create, SimpleForm, TextInput, required, SelectInput, useGetList} from "react-admin"
 import {useState} from "react"
+import { ClassroomSelector } from "../../../Components/constant/ClassroomSelector"
+import { validateDescription } from "../../../Components/hooks/ValidateDescription"
+import { validateClosing } from "../../../Components/hooks/ValidateClosing"
+import { getSubcategories } from "../../../Components/constant/SubCategoriesMap"
 
 export const CreateTicket = () => {
    const [selectedCategory, setSelectedCategory] = useState("")
    const [selectedStatus, setSelectedStatus] = useState(0)
-   const {data, isLoading} = useGetList("categories")
+   const {data: categories = [], isLoading} = useGetList("categories")
+   const subcategories = getSubcategories(categories)
 
-   const validateDescription = (value: string) => {
-      if (value && value.length > 500) {
-         return "Descripción debe de ser máximo 500 caracteres"
-      }
-      return undefined
-   }
-   const validateClosing = (value: string) => {
-      if (value && value.length > 250) {
-         4
-         return "Comentario de cierre debe de ser máximo 250 caracteres"
-      }
-      return undefined
-   }
-
-   const subcategories: {
-      index: number
-      name: string
-      parentCategoryId: string
-   }[] = []
-   if (data) {
-      data.forEach((category: {id: string; name: string; subcategories: string[]}) => {
-         category?.subcategories.forEach((subcategory: string, index: number) => {
-            subcategories.push({
-               parentCategoryId: category.id,
-               index: index,
-               name: subcategory,
-            })
-         })
-      })
-   }
-
-   const ClassroomSelector = () => {
-      const {data: classrooms, isLoading} = useGetList("classrooms")
-      if (isLoading) return <span>Cargando...</span>
-      return (
-         <SelectInput
-            source="classroomId"
-            label="Aula"
-            choices={
-               classrooms
-                  ? classrooms.map((classroom: any) => {
-                       return {
-                          id: classroom.id,
-                          name: classroom.name,
-                       }
-                    })
-                  : []
-            }
-            emptyText={"Sin especificar"}
-         />
-      )
-   }
    const username = localStorage.getItem("username")
    return (
       <Create>
@@ -69,7 +22,7 @@ export const CreateTicket = () => {
             <SelectInput
                source="categoryId"
                label="Categoría"
-               choices={data}
+               choices={categories}
                optionText="name"
                optionValue="id"
                validate={[required()]}

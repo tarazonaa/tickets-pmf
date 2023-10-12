@@ -1,90 +1,22 @@
 import {useEffect, useState} from "react"
-import {
-   DateInput,
-   Edit,
-   SelectInput,
-   SimpleForm,
-   TextInput,
-   required,
-   useGetList,
-   useRecordContext,
-   // useGetOne,
-   // RecordContextProvider,
-} from "react-admin"
+import {DateInput, Edit, SelectInput, SimpleForm, TextInput, required, useGetList, useRecordContext} from "react-admin"
+import {TicketRecord} from "../../../Components/Context/TicketRecord"
+import {validateDescription} from "../../../Components/hooks/ValidateDescription"
+import {validateClosing} from "../../../Components/hooks/ValidateClosing"
+import {getSubcategories} from "../../../Components/constant/SubCategoriesMap"
+import {ClassroomSelector} from "../../../Components/constant/ClassroomSelector"
 
-interface TicketRecord {
-   title: string
-   categoryId: string
-   subcategoryIndex: number
-   priority: number
-   intermediaries: string
-   description: string
-   status: number
-   createdAt: string
-   id: number
-   closedAt: string
-}
 export const TicketEdit = (props: any) => {
    const record = useRecordContext<TicketRecord>()
    const [selectedCategory, setSelectedCategory] = useState(record?.categoryId || "")
-   const [selectedStatus, setSelectedStatus] = useState(0)
-   const {data, isLoading} = useGetList("categories")
+   const {data: categories = [], isLoading} = useGetList("categories")
+
+   const subcategories = getSubcategories(categories)
 
    const handleSelectCategory = (id: string) => {
       setSelectedCategory(id)
    }
 
-   const validateDescription = (value: string) => {
-      if (value && value.length > 500) {
-         return "Descripción debe de ser máximo 500 caracteres"
-      }
-      return undefined
-   }
-   const validateClosing = (value: string) => {
-      if (value && value.length > 250) {
-         4
-         return "Comentario de cierre debe de ser máximo 250 caracteres"
-      }
-      return undefined
-   }
-
-   const subcategories: {
-      index: number
-      name: string
-      parentCategoryId: string
-   }[] = []
-   if (data) {
-      data.forEach((category: {id: string; name: string; subcategories: string[]}) => {
-         category?.subcategories.forEach((subcategory: string, index: number) => {
-            subcategories.push({
-               parentCategoryId: category.id,
-               index: index,
-               name: subcategory,
-            })
-         })
-      })
-   }
-   const ClassroomSelector = () => {
-      const {data: classrooms, isLoading} = useGetList("classrooms")
-      if (isLoading) return <span>Cargando...</span>
-      return (
-         <SelectInput
-            source="classroomId"
-            label="Aula"
-            choices={
-               classrooms
-                  ? classrooms.map((classroom: any) => {
-                       return {
-                          id: classroom.id,
-                          name: classroom.name,
-                       }
-                    })
-                  : []
-            }
-            emptyText={"Sin especificar"}
-         />
-      )
-   }
    const EditWithContext = () => {
       const record = useRecordContext<TicketRecord>()
       useEffect(() => {
@@ -124,11 +56,17 @@ export const TicketEdit = (props: any) => {
             <TextInput source="title" validate={[required()]} label="Título" />
             <ClassroomSelector />
             <TextInput source="assignee" validate={[required()]} label="Responsable" />
-            <TextInput source="reportedBy" disabled validate={[required()]} label="Reportado por" defaultValue={username} />
+            <TextInput
+               source="reportedBy"
+               disabled
+               validate={[required()]}
+               label="Reportado por"
+               defaultValue={username}
+            />
             <SelectInput
                source="categoryId"
                label="Categoría"
-               choices={data}
+               choices={categories}
                optionText="name"
                optionValue="id"
                validate={[required()]}
@@ -155,7 +93,6 @@ export const TicketEdit = (props: any) => {
                   {id: 1, name: "En progreso"},
                   {id: 2, name: "Cerrado"},
                ]}
-               onChange={(e) => setSelectedStatus(e.target.value)}
             />
             <TextInput source="intermediaries" />
             <TextInput

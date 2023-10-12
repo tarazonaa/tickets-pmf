@@ -1,6 +1,6 @@
 import {DataProvider} from "react-admin"
 import {fetchUtils} from "react-admin"
-import {dataProvider} from "../dataProvider"
+import {dataProvider} from "../../App/Connection/dataProvider"
 
 describe("dataProvider", () => {
    jest.setTimeout(30000)
