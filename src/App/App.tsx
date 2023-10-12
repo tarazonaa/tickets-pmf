@@ -13,10 +13,12 @@ import { TicketEdit } from "./pages/edit/EditTicket";
 import { PMFThemeDark } from "../Custom/theme/PMFTheme-Dark";
 import authProvider from "./Connection/authProvider";
 import MyLoginPage from "./pages/login/MyLoginPage";
+import { i18nProvider } from "../i18nProvider";
 
 export const App = () => {
   return (
     <Admin
+   i18nProvider={i18nProvider}
       dashboard={Dashboard}
       theme={PMFThemeLight}
       loginPage={MyLoginPage as any} 
