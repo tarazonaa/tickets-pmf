@@ -1,3 +1,4 @@
+
 const authProvider = {
    login: async ({username, password}) => {
       const request = new Request("https://backend-tickets-pmf.glitch.me/login", {
@@ -44,7 +45,8 @@ const authProvider = {
       }
    },
    getPermissions: () => {
-      return Promise.resolve()
+     const role = localStorage.getItem("role")
+     return role ? Promise.resolve(role) : Promise.reject()
    },
 }
 
