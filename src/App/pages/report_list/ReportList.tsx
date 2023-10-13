@@ -41,8 +41,16 @@ export const ReporteList = () => {
          >
             <TextField source="id" />
             <TextField source="name" />
-            <TextField source="mostTicketsClassroom._id" />
-            <TextField source="leastTicketsClassroom._id" />
+            <ArrayField source="mostTicketsClassroom">
+               <SingleFieldList>
+                  <TextField source="_id" />
+               </SingleFieldList>
+            </ArrayField>
+            <ArrayField source="leastTicketsClassroom">
+               <SingleFieldList>
+                  <TextField source="_id" />
+               </SingleFieldList>
+            </ArrayField>
             <TextField source="avgClosureTime" />
             <ArrayField source="activeTickets">
                <SingleFieldList>
