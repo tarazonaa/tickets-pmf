@@ -1,9 +1,16 @@
 import {DataProvider, fetchUtils} from "react-admin"
 import {stringify} from "query-string"
 
-const apiUrl = "https://backend-tickets-pmf.glitch.me"
-// const apiUrl = "http://localhost:8080";
-const httpClient = fetchUtils.fetchJson
+// const apiUrl = "https://backend-tickets-pmf.glitch.me"
+const apiUrl = "http://localhost:8080"
+const httpClient = (url: string, options: any = {}) => {
+   if (!options.headers) {
+      options.headers = new Headers({Accept: "application/json"})
+   }
+   // add your own headers here
+   options.headers.set("Authorization", "Bearer " + localStorage.getItem("auth") || "")
+   return fetchUtils.fetchJson(url, options)
+}
 
 export const dataProvider: DataProvider = {
    getList: async (resource, params) => {
@@ -15,8 +22,7 @@ export const dataProvider: DataProvider = {
          filter: JSON.stringify(params.filter),
       }
       const url = `${apiUrl}/${resource}?${stringify(query)}`
-
-      const {headers, json} = await httpClient(url)
+      const {json} = await httpClient(url)
       return {
          data: json,
          total: json.length,
