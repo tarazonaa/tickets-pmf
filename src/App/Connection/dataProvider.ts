@@ -20,6 +20,7 @@ export const dataProvider: DataProvider = {
          sort: JSON.stringify([field, order]),
          range: JSON.stringify([(page - 1) * perPage, page * perPage - 1]),
          filter: JSON.stringify(params.filter),
+         q: params.filter.q
       }
       const url = `${apiUrl}/${resource}?${stringify(query)}`
       const {json} = await httpClient(url)
