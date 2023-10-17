@@ -1,3 +1,5 @@
+import jwtDecode from "jwt-decode";
+
 const authProvider = {
    login: async ({username, password}) => {
       const request = new Request("https://backend-tickets-pmf.glitch.me/login", {
@@ -11,6 +13,8 @@ const authProvider = {
             throw new Error(response.statusText)
          }
          const auth = await response.json()
+        const role = jwtDecode(auth.token).role
+        localStorage.setItem("role", role)
          localStorage.setItem("auth", auth.token)
          localStorage.setItem("identity", JSON.stringify({id: auth.id, fullName: auth.fullName}))
          localStorage.setItem("username", auth.username)
@@ -44,7 +48,8 @@ const authProvider = {
       }
    },
    getPermissions: () => {
-      return Promise.resolve()
+     const role = localStorage.getItem("role")
+     return role ? Promise.resolve(role) : Promise.reject()
    },
 }
 
