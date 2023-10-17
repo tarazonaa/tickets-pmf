@@ -1,4 +1,4 @@
-import {Datagrid, DateField, List, TextField} from "react-admin"
+import {Datagrid, DateField, List, TextField,SearchInput} from "react-admin"
 
 import {StatusReturner} from "../../../Components/constant/StatusReturner"
 import {CategoryReturner} from "../../../Components/constant/CategoryReturner"
@@ -6,11 +6,12 @@ import {SubCategoryReturner} from "../../../Components/constant/SubCategoryRetur
 import {ClassroomReturner} from "../../../Components/constant/ClassroomReturner"
 import {DescShow} from "../../../Components/constant/DescShow"
 import {PriorityReturnerList} from "../../../Components/constant/PReturnerList"
-import { TicketRecord } from "../../../Components/Context/TicketRecord"
+
+const TicketFilters = [<SearchInput source="q" alwaysOn />]
 
 export const TicketList = () => {
    return (
-      <List>
+      <List filters={TicketFilters}>
          <Datagrid
             rowClick="expand"
             sx={{
