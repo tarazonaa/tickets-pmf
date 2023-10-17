@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 
 const authProvider = {
    login: async ({username, password}) => {
@@ -12,6 +13,8 @@ const authProvider = {
             throw new Error(response.statusText)
          }
          const auth = await response.json()
+        const role = jwtDecode(auth.token).role
+        localStorage.setItem("role", role)
          localStorage.setItem("auth", auth.token)
          localStorage.setItem("identity", JSON.stringify({id: auth.id, fullName: auth.fullName}))
          localStorage.setItem("username", auth.username)

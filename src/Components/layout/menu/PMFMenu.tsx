@@ -17,7 +17,6 @@ export const PMFMenu = () => {
    const [open, setOpen] = useSidebarState()
 
    const toggleSidebar = () => setOpen(false)
-
    const {permissions} = usePermissions()
 
    return (
