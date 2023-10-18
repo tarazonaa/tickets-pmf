@@ -4,6 +4,7 @@ import {
    Datagrid,
    Link,
    List,
+   NumberField,
    ReferenceField,
    SingleFieldList,
    TextField,
@@ -14,6 +15,7 @@ import {ReportRecord} from "../../../Components/Context/ReportRecord"
 
 export const LinkToTicket = (props: any) => {
    const record = useRecordContext<ReportRecord>()
+   console.log(props)
    return (
       <Link to={`/tickets/${props.record.id}/show`}>
          <ChipField source="title" />
@@ -22,8 +24,9 @@ export const LinkToTicket = (props: any) => {
 }
 export const LinkToClassroom = (props: any) => {
    const record = useRecordContext<ReportRecord>()
+   console.log(props)
    return (
-      <Link to={`/classroom/${props.record._id.id}/show`}>
+      <Link to={`/classrooms/${props.record._id.id}/show`}>
          <ChipField source="_id.name" />
       </Link>
    )
@@ -68,12 +71,12 @@ export const ReporteList = () => {
             </ArrayField>
             <ArrayField source="newTickets" label="Número de Tickets Nuevos">
                <SingleFieldList>
-                  <ChipField source="newTickets" label="Número de Tickets Nuevos" />
+                  <NumberField source="newTickets" label="Número de Tickets Nuevos" />
                </SingleFieldList>
             </ArrayField>
-            <ArrayField source="closedTickets" label="Número de Tickets Nuevos">
+            <ArrayField source="closedTickets" label="Número de Tickets Cerrados">
                <SingleFieldList>
-                  <ChipField source="closedTickets" label="Número de Tickets Nuevos" />
+                  <NumberField source="closedTickets" label="Número de Tickets Nuevos" />
                </SingleFieldList>
             </ArrayField>
          </Datagrid>

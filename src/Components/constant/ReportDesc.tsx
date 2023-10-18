@@ -31,8 +31,16 @@ export const ReportDesc = () => (
             <LinkToTicket />
          </SingleFieldList>
       </ArrayField>
-      <NumberField source="newTickets.count" label="Tickets Nuevos Esta Semana" />
-      <NumberField source="closedTickets.count" label="Tickets Cerrados Esta Semana" />
+      <ArrayField source="newTickets" label="Número de Tickets Nuevos">
+         <SingleFieldList>
+            <NumberField source="newTickets" label="Número de Tickets Nuevos" />
+         </SingleFieldList>
+      </ArrayField>
+      <ArrayField source="closedTickets" label="Número de Tickets Cerrados">
+         <SingleFieldList>
+            <NumberField source="closedTickets" label="Número de Tickets Nuevos" />
+         </SingleFieldList>
+      </ArrayField>
       <Box
          sx={{
             display: "flex",

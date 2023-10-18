@@ -1,9 +1,19 @@
-import {Show, SimpleShowLayout, TextField, DateField, RichTextField} from "react-admin"
+import {
+   Show,
+   SimpleShowLayout,
+   TextField,
+   DateField,
+   RichTextField,
+   SingleFieldList,
+   ArrayField,
+   ChipField,
+} from "react-admin"
 import {StatusReturner} from "../../../Components/constant/StatusReturner"
 import {PriorityReturner} from "../../../Components/constant/PriorityReturner"
 import {CategoryReturner} from "../../../Components/constant/CategoryReturner"
 import {SubCategoryReturner} from "../../../Components/constant/SubCategoryReturner"
 import {ClassroomReturner} from "../../../Components/constant/ClassroomReturner"
+import {LinkToTicket} from "../report_list/ReportList"
 
 export const ClassroomShow = () => {
    return (
@@ -20,6 +30,13 @@ export const ClassroomShow = () => {
             }}
          >
             <TextField source="id" />
+            <TextField source="name" />
+            <TextField source="inventory" />
+            <ArrayField source="tickets">
+               <SingleFieldList>
+                  <LinkToTicket />
+               </SingleFieldList>
+            </ArrayField>
          </SimpleShowLayout>
       </Show>
    )
