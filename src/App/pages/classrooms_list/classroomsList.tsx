@@ -1,4 +1,5 @@
 import {ArrayField, ChipField, Datagrid, List, SingleFieldList, TextField} from "react-admin"
+import {LinkToTicket} from "../report_list/ReportList"
 
 export const ClassroomList = () => (
    <List>
@@ -8,7 +9,7 @@ export const ClassroomList = () => (
          <TextField source="inventory" />
          <ArrayField source="tickets">
             <SingleFieldList>
-               <ChipField source="_id" />
+               <LinkToTicket />
             </SingleFieldList>
          </ArrayField>
       </Datagrid>

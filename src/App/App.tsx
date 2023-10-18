@@ -14,6 +14,9 @@ import {i18nProvider} from "../i18nProvider"
 import {Route} from "react-router-dom"
 import {ReporteList} from "./pages/report_list/ReportList"
 import {ClassroomList} from "./pages/classrooms_list/classroomsList"
+import {ClassroomEdit} from "./pages/edit/ClassroomEdit"
+import {ClassroomShow} from "./pages/show/ClassroomShow"
+import {ReportShow} from "./pages/show/ReportShow"
 
 export const App = () => {
    return (
@@ -28,8 +31,14 @@ export const App = () => {
          layout={PMFLayout}
       >
          <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit} />
-         <Resource name="reports" list={ReporteList} />
-         <Resource name="classrooms" list={ClassroomList} show={ShowGuesser} edit={EditGuesser} />
+         <Resource name="reports" list={ReporteList} show={ReportShow} />
+         <Resource
+            name="classrooms"
+            list={ClassroomList}
+            create={ClassroomEdit}
+            show={ClassroomShow}
+            edit={ClassroomEdit}
+         />
       </Admin>
    )
 }

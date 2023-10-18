@@ -9,26 +9,27 @@ import {
    TextField,
    useRecordContext,
 } from "react-admin"
-import {DescShow} from "../../../Components/constant/DescShow"
+import {ReportDesc} from "../../../Components/constant/ReportDesc"
 import {ReportRecord} from "../../../Components/Context/ReportRecord"
 
+export const LinkToTicket = (props: any) => {
+   const record = useRecordContext<ReportRecord>()
+   return (
+      <Link to={`/tickets/${props.record.id}/show`}>
+         <ChipField source="title" />
+      </Link>
+   )
+}
+export const LinkToClassroom = (props: any) => {
+   const record = useRecordContext<ReportRecord>()
+   return (
+      <Link to={`/classroom/${props.record._id.id}/show`}>
+         <ChipField source="_id.name" />
+      </Link>
+   )
+}
+
 export const ReporteList = () => {
-   const LinkToTicket = (props: any) => {
-      const record = useRecordContext<ReportRecord>()
-      return (
-         <Link to={`/tickets/${props.record.id}/show`}>
-            <ChipField source="title" />
-         </Link>
-      )
-   }
-   const LinkToClassroom = (props: any) => {
-      const record = useRecordContext<ReportRecord>()
-      return (
-         <Link to={`/classroom/${props.record.id}/show`}>
-            <ChipField source="name" />
-         </Link>
-      )
-   }
    return (
       <List>
          <Datagrid
@@ -44,7 +45,7 @@ export const ReporteList = () => {
                   textOverflow: "ellipsis",
                },
             }}
-            expand={<DescShow />}
+            expand={<ReportDesc />}
             expandSingle
          >
             <TextField source="id" />
@@ -65,12 +66,16 @@ export const ReporteList = () => {
                   <LinkToTicket />
                </SingleFieldList>
             </ArrayField>
-            <ArrayField source="newTickets">
+            <ArrayField source="newTickets" label="Número de Tickets Nuevos">
                <SingleFieldList>
-                  <ChipField source="_id" />
+                  <ChipField source="newTickets" label="Número de Tickets Nuevos" />
                </SingleFieldList>
             </ArrayField>
-            <TextField source="closedTickets._id" />
+            <ArrayField source="closedTickets" label="Número de Tickets Nuevos">
+               <SingleFieldList>
+                  <ChipField source="closedTickets" label="Número de Tickets Nuevos" />
+               </SingleFieldList>
+            </ArrayField>
          </Datagrid>
       </List>
    )
