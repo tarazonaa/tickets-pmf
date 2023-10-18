@@ -50,7 +50,7 @@ export const TicketEdit = (props: any) => {
    const username = localStorage.getItem("username")
    return (
       <Edit {...props}>
-         <SimpleForm>
+         <SimpleForm warnWhenUnsavedChanges>
             <TextInput source="id" disabled />
             <TextInput source="title" validate={[required()]} label="Título" />
             <ClassroomSelector />

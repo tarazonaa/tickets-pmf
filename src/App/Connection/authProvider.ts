@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode"
 
 const authProvider = {
    login: async ({username, password}) => {
@@ -12,9 +12,11 @@ const authProvider = {
          if (response.status < 200 || response.status >= 300) {
             throw new Error(response.statusText)
          }
-         const auth = await response.json()
-        const role = jwtDecode(auth.token).role
-        localStorage.setItem("role", role)
+         const auth = (await response.json()) as {token: string; id: number; fullName: string; username: string}
+         console.log(jwtDecode(auth.token))
+         const decodedToken = jwtDecode(auth.token) as {role: string}
+         const role = decodedToken.role
+         localStorage.setItem("role", role)
          localStorage.setItem("auth", auth.token)
          localStorage.setItem("identity", JSON.stringify({id: auth.id, fullName: auth.fullName}))
          localStorage.setItem("username", auth.username)
@@ -42,14 +44,14 @@ const authProvider = {
    },
    getIdentity: () => {
       try {
-         return Promise.resolve(JSON.parse(localStorage.getItem("identity")))
+         return Promise.resolve(JSON.parse(localStorage.getItem("identity") || ""))
       } catch {
          return Promise.reject()
       }
    },
    getPermissions: () => {
-     const role = localStorage.getItem("role")
-     return role ? Promise.resolve(role) : Promise.reject()
+      const role = localStorage.getItem("role")
+      return role ? Promise.resolve(role) : Promise.reject()
    },
 }
 
