@@ -24,7 +24,8 @@ export const PMFMenu = () => {
          <Menu.DashboardItem onClick={toggleSidebar} />
          <div onClick={toggleSidebar}>
             <Menu.ResourceItem name="tickets" />
-            {permissions !== "Aula" && <Menu.ResourceItem name="reportes" />}
+            {permissions !== "Aula" && <Menu.ResourceItem name="reports" />}
+            {permissions !== "Aula" && <Menu.ResourceItem name="classrooms" />}
          </div>
       </Menu>
    )
