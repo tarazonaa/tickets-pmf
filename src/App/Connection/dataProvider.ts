@@ -1,9 +1,9 @@
 import {DataProvider, fetchUtils} from "react-admin"
 import {stringify} from "query-string"
 
-// const apiUrl = "https://backend-tickets-pmf.glitch.me"
+const apiUrl = "https://backend-tickets-pmf.glitch.me"
 // const apiUrl = "http://10.49.119.158:8080"
-const apiUrl = "http://localhost:8080"
+// const apiUrl = "http://localhost:8080"
 const httpClient = (url: string, options: any = {}) => {
    if (!options.headers) {
       options.headers = new Headers({Accept: "application/json"})
@@ -101,9 +101,14 @@ export const dataProvider: DataProvider = {
       }).then(({json}) => ({data: json.data})),
 
    deleteMany: async (resource, params) => {
-      const query = {
-         filter: JSON.stringify({id: params.ids}),
+      if (!params.ids || params.ids.length === 0) {
+         return {data: []}
       }
+
+      const query = {
+         id: JSON.stringify(params.ids),
+      }
+
       const {json} = await httpClient(`${apiUrl}/${resource}?${stringify(query)}`, {
          method: "DELETE",
       })

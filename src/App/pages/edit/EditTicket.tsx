@@ -29,7 +29,7 @@ export const TicketEdit = (props: any) => {
          }
       }, [record])
       return (
-         subcategories.length > 0 && (
+         subcategories.length > 0 ? (
             <SelectInput
                source="subcategoryIndex"
                label="Subcategoria"
@@ -45,7 +45,7 @@ export const TicketEdit = (props: any) => {
                isLoading={isLoading}
                defaultValue={record?.subcategoryIndex || 0}
             />
-         )
+         ) : null
       )
    }
    const username = localStorage.getItem("username")

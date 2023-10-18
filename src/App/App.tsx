@@ -17,6 +17,9 @@ import {ClassroomList} from "./pages/classrooms_list/classroomsList"
 import {ClassroomEdit} from "./pages/edit/ClassroomEdit"
 import {ClassroomShow} from "./pages/show/ClassroomShow"
 import {ReportShow} from "./pages/show/ReportShow"
+import BookIcon from "@mui/icons-material/Book"
+import DoorFrontIcon from "@mui/icons-material/DoorFront"
+import AssignmentIcon from "@mui/icons-material/Assignment"
 
 export const App = () => {
    return (
@@ -30,14 +33,22 @@ export const App = () => {
          dataProvider={dataProvider}
          layout={PMFLayout}
       >
-         <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit} />
-         <Resource name="reports" list={ReporteList} show={ReportShow} />
+         <Resource
+            name="tickets"
+            list={TicketList}
+            create={CreateTicket}
+            show={TicketShow}
+            edit={TicketEdit}
+            icon={AssignmentIcon}
+         />
+         <Resource name="reports" list={ReporteList} show={ReportShow} icon={BookIcon} />
          <Resource
             name="classrooms"
             list={ClassroomList}
             create={ClassroomEdit}
             show={ClassroomShow}
             edit={ClassroomEdit}
+            icon={DoorFrontIcon}
          />
       </Admin>
    )
