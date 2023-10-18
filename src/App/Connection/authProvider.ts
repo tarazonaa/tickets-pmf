@@ -28,6 +28,8 @@ const authProvider = {
    logout: () => {
       localStorage.removeItem("auth")
       localStorage.removeItem("identity")
+      localStorage.removeItem("role")
+      localStorage.removeItem("username")
       return Promise.resolve()
    },
    checkAuth: () => {
