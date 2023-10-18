@@ -21,6 +21,14 @@ export const ReporteList = () => {
          </Link>
       )
    }
+   const LinkToClassroom = (props: any) => {
+      const record = useRecordContext<ReportRecord>()
+      return (
+         <Link to={`/classroom/${props.record.id}/show`}>
+            <ChipField source="name" />
+         </Link>
+      )
+   }
    return (
       <List>
          <Datagrid
@@ -43,12 +51,12 @@ export const ReporteList = () => {
             <TextField source="name" />
             <ArrayField source="mostTicketsClassroom">
                <SingleFieldList>
-                  <TextField source="_id" />
+                  <LinkToClassroom />
                </SingleFieldList>
             </ArrayField>
             <ArrayField source="leastTicketsClassroom">
                <SingleFieldList>
-                  <TextField source="_id" />
+                  <LinkToClassroom />
                </SingleFieldList>
             </ArrayField>
             <TextField source="avgClosureTime" />
