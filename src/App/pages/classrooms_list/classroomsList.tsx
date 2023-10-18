@@ -2,11 +2,11 @@ import {ArrayField, ChipField, Datagrid, List, SingleFieldList, TextField} from 
 import {LinkToTicket} from "../report_list/ReportList"
 
 export const ClassroomList = () => (
-   <List>
+   <List title="Lista de aulas">
       <Datagrid rowClick="edit">
          <TextField source="id" />
-         <TextField source="name" />
-         <TextField source="inventory" />
+         <TextField source="name" label="Nombre" />
+         <TextField source="inventory" label="Inventario" />
       </Datagrid>
    </List>
 )

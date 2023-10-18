@@ -40,8 +40,19 @@ export const App = () => {
             show={TicketShow}
             edit={TicketEdit}
             icon={AssignmentIcon}
+            options={{
+               label: "Incidentes",
+            }}
          />
-         <Resource name="reports" list={ReporteList} show={ReportShow} icon={BookIcon} />
+         <Resource
+            name="reports"
+            list={ReporteList}
+            show={ReportShow}
+            icon={BookIcon}
+            options={{
+               label: "Reportes",
+            }}
+         />
          <Resource
             name="classrooms"
             list={ClassroomList}
@@ -49,6 +60,9 @@ export const App = () => {
             show={ClassroomShow}
             edit={ClassroomEdit}
             icon={DoorFrontIcon}
+            options={{
+               label: "Aulas",
+            }}
          />
       </Admin>
    )

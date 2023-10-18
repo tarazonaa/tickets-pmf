@@ -28,29 +28,33 @@ export const TicketEdit = (props: any) => {
             }
          }
       }, [record])
-      return (
-         subcategories.length > 0 ? (
-            <SelectInput
-               source="subcategoryIndex"
-               label="Subcategoria"
-               choices={subcategories.map((subcategory) => {
-                  if (subcategory.parentCategoryId === selectedCategory) {
-                     return subcategory
-                  }
-                  return null
-               })}
-               optionText="name"
-               optionValue="index"
-               validate={[required()]}
-               isLoading={isLoading}
-               defaultValue={record?.subcategoryIndex || 0}
-            />
-         ) : null
-      )
+      return subcategories.length > 0 ? (
+         <SelectInput
+            source="subcategoryIndex"
+            label="Subcategoria"
+            choices={subcategories.map((subcategory) => {
+               if (subcategory.parentCategoryId === selectedCategory) {
+                  return subcategory
+               }
+               return null
+            })}
+            optionText="name"
+            optionValue="index"
+            validate={[required()]}
+            isLoading={isLoading}
+            defaultValue={record?.subcategoryIndex || 0}
+         />
+      ) : null
    }
    const username = localStorage.getItem("username")
+   const EditTicketTitle = () => {
+      const record = useRecordContext()
+      // the record can be empty while loading
+      if (!record) return null
+      return <span>Incidente #{record.id}</span>
+   }
    return (
-      <Edit {...props}>
+      <Edit {...props} title={<EditTicketTitle />}>
          <SimpleForm warnWhenUnsavedChanges>
             <TextInput source="id" disabled />
             <TextInput source="title" validate={[required()]} label="Título" />
