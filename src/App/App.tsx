@@ -13,6 +13,7 @@ import MyLoginPage from "./pages/login/MyLoginPage"
 import {i18nProvider} from "../i18nProvider"
 import {Route} from "react-router-dom"
 import {ReporteList} from "./pages/report_list/ReportList"
+import BookIcon from '@mui/icons-material/Book';
 
 export const App = () => {
    return (
@@ -27,7 +28,8 @@ export const App = () => {
          layout={PMFLayout}
       >
          <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit} />
-         <Resource name="reportes" list={ReporteList} />
+         <Resource name="reportes" list={ReporteList} icon={BookIcon} />
+
       </Admin>
    )
 }
