@@ -1,20 +1,13 @@
-import {
-   Show,
-   SimpleShowLayout,
-   TextField,
-   DateField,
-   RichTextField,
-} from "react-admin"
-import { StatusReturner } from "../../../Components/constant/StatusReturner"
-import { PriorityReturner } from "../../../Components/constant/PriorityReturner"
-import { CategoryReturner } from "../../../Components/constant/CategoryReturner"
-import { SubCategoryReturner } from "../../../Components/constant/SubCategoryReturner"
-import { ClassroomReturner } from "../../../Components/constant/ClassroomReturner"
+import {Show, SimpleShowLayout, TextField, DateField, RichTextField} from "react-admin"
+import {StatusReturner} from "../../../Components/constant/StatusReturner"
+import {PriorityReturner} from "../../../Components/constant/PriorityReturner"
+import {CategoryReturner} from "../../../Components/constant/CategoryReturner"
+import {SubCategoryReturner} from "../../../Components/constant/SubCategoryReturner"
+import {ClassroomReturner} from "../../../Components/constant/ClassroomReturner"
 
 export const TicketShow = () => {
-
    return (
-      <Show>
+      <Show title="Ver Incidente">
          <SimpleShowLayout
             sx={{
                "& .MuiTypography-root": {

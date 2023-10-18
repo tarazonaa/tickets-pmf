@@ -1,5 +1,4 @@
 export interface ClassroomRecord {
-    name: string
-    id: number
-    tickets: number[]
- }
+   name: string
+   id: number
+}
