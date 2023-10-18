@@ -1,4 +1,4 @@
-import {Admin, CustomRoutes, ListGuesser, Resource, ShowGuesser, WithPermissions} from "react-admin"
+import {Admin, CustomRoutes, EditGuesser, ListGuesser, Resource, ShowGuesser, WithPermissions} from "react-admin"
 import {dataProvider} from "./Connection/dataProvider"
 import {TicketList} from "./pages/tickets_list/ticketsList"
 import {CreateTicket} from "./pages/create/CreateTicket"
@@ -29,7 +29,7 @@ export const App = () => {
       >
          <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit} />
          <Resource name="reports" list={ReporteList} />
-         <Resource name="classrooms" list={ClassroomList} />
+         <Resource name="classrooms" list={ClassroomList} show={ShowGuesser} edit={EditGuesser} />
       </Admin>
    )
 }
