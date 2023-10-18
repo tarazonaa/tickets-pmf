@@ -10,7 +10,6 @@ export const TicketEdit = (props: any) => {
    const record = useRecordContext<TicketRecord>()
    const [selectedCategory, setSelectedCategory] = useState(record?.categoryId || "")
    const {data: categories = [], isLoading} = useGetList("categories")
-
    const subcategories = getSubcategories(categories)
 
    const handleSelectCategory = (id: string) => {

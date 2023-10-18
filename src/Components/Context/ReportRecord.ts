@@ -3,7 +3,7 @@ export interface ReportRecord {
    name: string
    mostTicketsClassroom: object
    leastTicketsClassroom: object
-   avgClosureTime: number
+   avgClosureTime: number | null
    activeTickets: Array<object>
    newTickets: Array<object>
    closedTickets: Array<object>

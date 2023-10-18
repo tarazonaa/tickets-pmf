@@ -10,6 +10,16 @@ export const PMFLayout = (props: LayoutProps) => (
       "& .RaLayout-content": {
         paddingTop: "10px",
       },
+      "& .css-1sfy5zw-MuiList-root-RaMenu-root": {
+        marginTop: "10px",
+      },
+      "& .MuiMenuItem-gutters":
+      {
+        svg: {
+          height: "1.5em",
+        },
+      }
+
     }}
     menu={PMFMenu}
   />

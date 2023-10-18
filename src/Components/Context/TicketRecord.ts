@@ -3,11 +3,12 @@ export interface TicketRecord {
     categoryId: string
     subcategoryIndex: number
     priority: number
-    intermediaries: string
+    assignee: string
     description: string
     status: number
     createdAt: string
     id: number
-    closedAt: string
+    closedAt?: string
     classroomId: number
+    reportedBy?: string
  }
