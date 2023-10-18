@@ -114,13 +114,5 @@ export const dataProvider: DataProvider = {
       })
       return {data: json.data}
    },
-   archive: (resource, params) => {
-      // Call the archive endpoint and return a promise
-  }
    
-}
-export interface DataProviderWithCustomMethods extends DataProvider {
-   archive: (resource: string, params: {
-       id: number;
-   }) => Promise<any>
 }
