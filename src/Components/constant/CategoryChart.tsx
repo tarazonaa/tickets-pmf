@@ -1,35 +1,29 @@
-import React from 'react';
-import {
-    BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
-} from 'recharts';
-import { countCategories } from './CountCategories'; // adjust the import path
+import React, { PureComponent } from "react"
+import {ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar} from "recharts"
+import {countCategories} from "./CountCategories" // adjust the import path
 
 const CategoryChart: React.FC = () => {
-    const categoryCounts = countCategories();
-    const data = Object.keys(categoryCounts).map(categoryId => ({
-        categoryId,
-        count: categoryCounts[categoryId]
-    }));
+   const categoryCounts = countCategories()
+   const data = Object.keys(categoryCounts).map((categoryId) => ({
+      categoryId,
+      count: categoryCounts[categoryId],
+   }))
 
-    return (
-        <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-            width={500}
-            height={300}
-            data={data}
-            margin={{
-                top: 5, right: 30, left: 20, bottom: 5,
-            }}
-        >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="categoryId" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="count" fill="#8884d8" />
-        </BarChart>
-        </ResponsiveContainer>
-    );
-};
-
-export default CategoryChart;
+   return (
+      <ResponsiveContainer width="100%" height="100%">
+         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="categoryId" />
+            <PolarRadiusAxis />
+            <Radar name="Mike" dataKey="count" stroke="#008170" fill="#008170" fillOpacity={0.6} />
+         </RadarChart>
+      </ResponsiveContainer>
+   )
+}
+export default class RadarExample extends PureComponent {
+    render() {
+       return (
+        <CategoryChart />
+       )
+    }
+ }

@@ -26,7 +26,7 @@ export interface ReportData {
    leastTicketsClassroom: ClassroomTicketInfo[]
    avgClosureTime: null | number
    activeTickets: ActiveTicket[]
-   newTickets: [_id: number, newTickets: number]
-   closedTickets: [_id: number, closedTickets: number]
+   newTickets: {_id: number, newTickets: number}[]
+   closedTickets: {_id: number, closedTickets: number}[]
    id: number
 }

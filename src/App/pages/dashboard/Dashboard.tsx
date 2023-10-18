@@ -2,17 +2,14 @@ import {styled} from "@mui/material/styles"
 import Box from "@mui/material/Box"
 import Paper from "@mui/material/Paper"
 import Grid from "@mui/material/Grid"
-// import ExampleLineC from "../../../Components/constant/ExampleLineC"
-import ExamplePieC from "../../../Components/constant/ExamplePieC"
-import RadarExample from "../../../Components/constant/ExampleRadarC"
-// import ExampleBarC from "../../../Components/constant/ExampleBarC"
 import Typography from "@mui/material/Typography"
 import TicketCount from "../../../Components/constant/Total"
-import { MenuItemLink, useDataProvider, useRecordContext } from "react-admin"
-import CategoryChart from "../../../Components/constant/CategoryChart"
+import { MenuItemLink, useDataProvider } from "react-admin"
+import RadarExample from "../../../Components/constant/CategoryChart"
 import ClassroomIncidentReport from "../../../Components/constant/ClassroomReturnerIncidents"
 import { ReportData } from "../../../Components/Context/DashboardReportRecord"
 import { useEffect, useState } from "react"
+import Top5ClassroomsChart from "../../../Components/constant/Top5ClassroomsChart"
 
 const Item = styled(Paper)(({theme}) => ({
    ...theme.typography.body2,
@@ -32,6 +29,7 @@ const ReportDashNewClosed: React.FC<{ id: number }> = ({ id }) => {
               .then(({ data }) => {
                   setReport(data);
                   setLoading(false);
+                  console.log(data)
               })
               .catch((error) => {
                   setError(error.message);
@@ -48,13 +46,13 @@ const ReportDashNewClosed: React.FC<{ id: number }> = ({ id }) => {
             Numero de tickets nuevos
             </Typography>
             <Typography variant="h4">
-               {report.newTickets[1]}
+               {report.newTickets[0].newTickets}
             </Typography>
             <Typography variant="h6" sx={{fontWeight: "800"}}>
                Numero de tickets cerrados
             </Typography>
             <Typography variant="h4">
-            {report.closedTickets[1]}
+            {report.closedTickets[0].closedTickets}
             </Typography>
          </Box>
      )
@@ -62,6 +60,7 @@ const ReportDashNewClosed: React.FC<{ id: number }> = ({ id }) => {
 
 export const Dashboard = () => {
    return (
+      
       <Grid
          container
          spacing={2}
@@ -106,12 +105,12 @@ export const Dashboard = () => {
          </Grid>
          <Grid item xs={6} md={4}>
             <Item sx={{height: "35vh"}}>
-               <RadarExample />
+               <Top5ClassroomsChart />
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
             <Item sx={{height: "35vh"}}>
-               <CategoryChart />
+               <RadarExample />
             </Item>
          </Grid>
       </Grid>
