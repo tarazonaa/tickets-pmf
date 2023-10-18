@@ -1,4 +1,4 @@
-import {Datagrid, DateField, List, TextField,SearchInput} from "react-admin"
+import {Datagrid, DateField, List, TextField, SearchInput} from "react-admin"
 
 import {StatusReturner} from "../../../Components/constant/StatusReturner"
 import {CategoryReturner} from "../../../Components/constant/CategoryReturner"
@@ -11,7 +11,7 @@ const TicketFilters = [<SearchInput source="q" alwaysOn />]
 
 export const TicketList = () => {
    return (
-      <List filters={TicketFilters}>
+      <List title="Lista de incidentes" filters={TicketFilters}>
          <Datagrid
             rowClick="expand"
             sx={{

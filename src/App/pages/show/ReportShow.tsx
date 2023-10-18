@@ -7,6 +7,7 @@ import {
    ArrayField,
    SingleFieldList,
    NumberField,
+   useRecordContext,
 } from "react-admin"
 import {StatusReturner} from "../../../Components/constant/StatusReturner"
 import {PriorityReturner} from "../../../Components/constant/PriorityReturner"
@@ -16,8 +17,14 @@ import {ClassroomReturner} from "../../../Components/constant/ClassroomReturner"
 import {LinkToClassroom, LinkToTicket} from "../report_list/ReportList"
 
 export const ReportShow = () => {
+   const EditReportTitle = () => {
+      const record = useRecordContext()
+      // the record can be empty while loading
+      if (!record) return null
+      return <span>{record.name}</span>
+   }
    return (
-      <Show>
+      <Show title={<EditReportTitle />}>
          <SimpleShowLayout
             sx={{
                "& .MuiTypography-root": {
@@ -29,7 +36,7 @@ export const ReportShow = () => {
                },
             }}
          >
-            <TextField source="name" label=" " />
+            <TextField source="name" label="" sx={{fontSize: "2em", fontWeight: "bold"}} />
             <ArrayField source="mostTicketsClassroom" label="Aula Con Menos Tickets">
                <SingleFieldList>
                   <LinkToClassroom />

@@ -34,7 +34,7 @@ export const LinkToClassroom = (props: any) => {
 
 export const ReporteList = () => {
    return (
-      <List>
+      <List title="Lista de reportes">
          <Datagrid
             rowClick="expand"
             sx={{
@@ -52,31 +52,31 @@ export const ReporteList = () => {
             expandSingle
          >
             <TextField source="id" />
-            <TextField source="name" />
-            <ArrayField source="mostTicketsClassroom">
+            <TextField source="name" label="Nombre" />
+            <ArrayField source="mostTicketsClassroom" label="Aula con Mayor Número de Incidentes">
                <SingleFieldList>
                   <LinkToClassroom />
                </SingleFieldList>
             </ArrayField>
-            <ArrayField source="leastTicketsClassroom">
+            <ArrayField source="leastTicketsClassroom" label="Aula con Menor Número de Incidentes">
                <SingleFieldList>
                   <LinkToClassroom />
                </SingleFieldList>
             </ArrayField>
-            <TextField source="avgClosureTime" />
-            <ArrayField source="activeTickets">
+            <TextField source="avgClosureTime" label="Tiempo de Resolución Promedio" />
+            <ArrayField source="activeTickets" label="Incidentes Activos">
                <SingleFieldList>
                   <LinkToTicket />
                </SingleFieldList>
             </ArrayField>
-            <ArrayField source="newTickets" label="Número de Tickets Nuevos">
+            <ArrayField source="newTickets" label="Número de Incidentes Nuevos">
                <SingleFieldList>
-                  <NumberField source="newTickets" label="Número de Tickets Nuevos" />
+                  <NumberField source="newTickets" label="Número de Incidentes Nuevos" />
                </SingleFieldList>
             </ArrayField>
-            <ArrayField source="closedTickets" label="Número de Tickets Cerrados">
+            <ArrayField source="closedTickets" label="Número de Incidentes Cerrados">
                <SingleFieldList>
-                  <NumberField source="closedTickets" label="Número de Tickets Nuevos" />
+                  <NumberField source="closedTickets" label="Número de Incidentes Nuevos" />
                </SingleFieldList>
             </ArrayField>
          </Datagrid>
