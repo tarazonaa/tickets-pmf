@@ -65,7 +65,7 @@ export const Dashboard = () => {
          container
          spacing={2}
          sx={{
-            mt: 2,
+            mt: .75,
          }}
       >
          <Grid item xs={6} md={4}>

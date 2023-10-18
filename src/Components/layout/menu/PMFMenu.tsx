@@ -1,7 +1,7 @@
-import {Box} from "@mui/material"
+
 import {Menu} from "ra-ui-materialui"
-import {useState} from "react"
-import {useLocale, usePermissions, useSidebarState} from "react-admin"
+
+import { usePermissions, useSidebarState} from "react-admin"
 
 // const RefreshListButton = () => (
 //   <WithListContext

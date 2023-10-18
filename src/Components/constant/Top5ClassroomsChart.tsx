@@ -1,8 +1,9 @@
-import React from "react"
+import React, {PureComponent} from "react"
 import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer} from "recharts"
 import {getTop5ClassroomsWithMostIncidents} from "./getTop5" // adjust the import path
+import {PMFThemeDark} from "../../Custom/theme/PMFTheme-Dark" // adjust the import path
 
-const Top5ClassroomsChart: React.FC = () => {
+const Chart: React.FC = () => {
    const top5Classrooms = getTop5ClassroomsWithMostIncidents()
 
    return (
@@ -21,11 +22,16 @@ const Top5ClassroomsChart: React.FC = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="classroomId" />
             <YAxis />
-            <Tooltip />
+            <Tooltip contentStyle={PMFThemeDark.tooltip.contentStyle}/>
             <Bar dataKey="count" fill="#008170" label={{position: "top"}} />
          </BarChart>
       </ResponsiveContainer>
    )
+}
+class Top5ClassroomsChart extends PureComponent {
+   render() {
+      return <Chart />
+   }
 }
 
 export default Top5ClassroomsChart

@@ -2,6 +2,16 @@ import { defaultDarkTheme } from "react-admin";
 
 export const PMFThemeDark = {
   ...defaultDarkTheme,
+  tooltip: {
+    contentStyle: {
+      backgroundColor: "#232D3F",
+      color: "#fff",
+      fontSize: "14px",
+      borderRadius: "6px",
+      padding: "10px",
+      boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.75)",
+    },
+  },
   palette: {
     ...defaultDarkTheme.palette,
     primary: {
