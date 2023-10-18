@@ -10,7 +10,7 @@ const CategoryChart: React.FC = () => {
    }))
 
    return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="92%">
          <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
             <PolarGrid />
             <PolarAngleAxis dataKey="categoryId" />

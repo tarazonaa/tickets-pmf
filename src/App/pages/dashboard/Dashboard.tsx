@@ -69,11 +69,8 @@ export const Dashboard = () => {
          }}
       >
          <Grid item xs={6} md={4}>
-            <Item sx={{display:"flex", flexDirection: "column",height: "50vh", justifyContent: "space-evenly"}}>
-               <Typography variant="h4">
-                  Total de tickets
-               </Typography>
-               <TicketCount/>
+            <Item sx={{height: "50vh"}}>
+               <Top5ClassroomsChart />
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
@@ -94,8 +91,8 @@ export const Dashboard = () => {
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
-            <Item sx={{height: "50vh"}}>
-             <ClassroomIncidentReport/>
+            <Item sx={{height: "50vh",display:"flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+               <RadarExample />
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
@@ -104,13 +101,16 @@ export const Dashboard = () => {
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
-            <Item sx={{height: "35vh"}}>
-               <Top5ClassroomsChart />
+            <Item sx={{display:"flex", flexDirection: "column",height: "35vh", justifyContent: "space-evenly"}}>
+               <Typography variant="h4">
+                  Total de tickets
+               </Typography>
+               <TicketCount/>
             </Item>
          </Grid>
          <Grid item xs={6} md={4}>
             <Item sx={{height: "35vh"}}>
-               <RadarExample />
+             <ClassroomIncidentReport/>
             </Item>
          </Grid>
       </Grid>
