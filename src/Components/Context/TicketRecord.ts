@@ -10,5 +10,5 @@ export interface TicketRecord {
     id: number
     closedAt?: string
     classroomId: number
-    reportedBy: string
+    reportedBy?: string
  }

@@ -6,8 +6,8 @@ const TicketCount: React.FC = () => {
     const ticketCount = tickets2.length;
 
     return (
-        <Typography variant="h6">
-            Total Tickets: {ticketCount}
+        <Typography variant="h2">
+            {ticketCount}
         </Typography>
     );
 };
