@@ -11,9 +11,8 @@ import {PMFThemeDark} from "../Custom/theme/PMFTheme-Dark"
 import authProvider from "./Connection/authProvider"
 import MyLoginPage from "./pages/login/MyLoginPage"
 import {i18nProvider} from "../i18nProvider"
-import {Route} from "react-router-dom"
 import {ReporteList} from "./pages/report_list/ReportList"
-import BookIcon from '@mui/icons-material/Book';
+import BookIcon from "@mui/icons-material/Book"
 
 export const App = () => {
    return (
@@ -29,7 +28,6 @@ export const App = () => {
       >
          <Resource name="tickets" list={TicketList} create={CreateTicket} show={TicketShow} edit={TicketEdit} />
          <Resource name="reportes" list={ReporteList} icon={BookIcon} />
-
       </Admin>
    )
 }

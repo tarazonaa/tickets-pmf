@@ -7,6 +7,7 @@ import ExamplePieC from "../../../Components/constant/ExamplePieC"
 import RadarExample from "../../../Components/constant/ExampleRadarC"
 import ExampleBarC from "../../../Components/constant/ExampleBarC"
 import Typography from "@mui/material/Typography"
+import TicketCount from "../../../Components/constant/Total"
 
 const Item = styled(Paper)(({theme}) => ({
    ...theme.typography.body2,
@@ -24,7 +25,15 @@ export const Dashboard = () => {
             mt: 2,
          }}
       >
-         <Grid item xs={6} md={8}>
+         <Grid item xs={6} md={4}>
+            <Item sx={{height: "50vh"}}>
+               <Typography variant="h1">
+                  Total de tickets
+               </Typography>
+               <TicketCount/>
+            </Item>
+         </Grid>
+         <Grid item xs={6} md={4}>
             <Item sx={{height: "50vh"}}>
                <Typography variant="h2" gutterBottom>
                   Bienvenido!
