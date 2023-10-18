@@ -32,11 +32,6 @@ export const ClassroomShow = () => {
             <TextField source="id" />
             <TextField source="name" />
             <TextField source="inventory" />
-            <ArrayField source="tickets">
-               <SingleFieldList>
-                  <LinkToTicket />
-               </SingleFieldList>
-            </ArrayField>
          </SimpleShowLayout>
       </Show>
    )

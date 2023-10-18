@@ -7,11 +7,6 @@ export const ClassroomEdit = () => (
          <TextInput source="id" disabled />
          <TextInput source="name" label="Nombre" />
          <TextInput source="inventory" label="Inventario" />
-         <ArrayField source="tickets" label="Tickets Asociados">
-            <SingleFieldList>
-               <LinkToTicket />
-            </SingleFieldList>
-         </ArrayField>
       </SimpleForm>
    </Edit>
 )

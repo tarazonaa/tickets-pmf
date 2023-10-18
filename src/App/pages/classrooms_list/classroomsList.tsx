@@ -7,11 +7,6 @@ export const ClassroomList = () => (
          <TextField source="id" />
          <TextField source="name" />
          <TextField source="inventory" />
-         <ArrayField source="tickets">
-            <SingleFieldList>
-               <LinkToTicket />
-            </SingleFieldList>
-         </ArrayField>
       </Datagrid>
    </List>
 )
