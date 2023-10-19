@@ -7,7 +7,7 @@ const Chart: React.FC = () => {
    const top5Classrooms = getTop5ClassroomsWithMostIncidents()
 
    return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="90%">
          <BarChart
             width={600}
             height={300}
