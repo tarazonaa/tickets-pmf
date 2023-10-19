@@ -2,7 +2,7 @@ import * as React from "react"
 import {useState} from "react"
 import styled from "styled-components"
 import {Form} from "react-admin"
-import {useLogin, useNotify, Notification} from "react-admin"
+import {useLogin, useNotify, Notification, useSidebarState} from "react-admin"
 import background from "/background.jpeg"
 
 const CompanyLogo = styled.img`
