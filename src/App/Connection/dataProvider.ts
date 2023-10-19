@@ -4,12 +4,18 @@ import {stringify} from "query-string"
 const apiUrl = "https://backend-tickets-pmf.glitch.me"
 // const apiUrl = "http://10.49.119.158:8080"
 // const apiUrl = "http://localhost:8080"
-const httpClient = (url: string, options: any = {}) => {
+const httpClient = async (url: string, options: any = {}) => {
    if (!options.headers) {
       options.headers = new Headers({Accept: "application/json"})
    }
-   // add your own headers here
    options.headers.set("Authorization", "Bearer " + localStorage.getItem("auth") || "")
+   const response = await fetchUtils.fetchJson(url, options).catch(() => {});
+   
+   if (response && response.status === 401) {
+      console.error('Unauthorized access - perhaps restricted for this user role');
+      // handle it - perhaps redirect or show a message
+      return response;  // or handle it differently depending on your requirements
+   }
    return fetchUtils.fetchJson(url, options)
 }
 

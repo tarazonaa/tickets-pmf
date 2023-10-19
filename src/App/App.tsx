@@ -1,4 +1,4 @@
-import {Admin, CustomRoutes, EditGuesser, ListGuesser, Resource, ShowGuesser, WithPermissions} from "react-admin"
+import {Admin, Resource} from "react-admin"
 import {dataProvider} from "./Connection/dataProvider"
 import {TicketList} from "./pages/tickets_list/ticketsList"
 import {CreateTicket} from "./pages/create/CreateTicket"
