@@ -44,11 +44,11 @@ const ReportDashNewClosed: React.FC<{id: number}> = ({id}) => {
    return (
       <Box sx={{height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-evenly"}}>
          <Typography variant="h6" sx={{fontWeight: "800"}}>
-            Numero de tickets nuevos
+            Número de tickets nuevos
          </Typography>
          <Typography variant="h4">{report.newTickets[0].newTickets}</Typography>
          <Typography variant="h6" sx={{fontWeight: "800"}}>
-            Numero de tickets cerrados
+            Número de tickets cerrados
          </Typography>
          <Typography variant="h4">{report.closedTickets[0].closedTickets}</Typography>
       </Box>
@@ -67,7 +67,7 @@ export const Dashboard = () => {
          <Grid item xs={6} md={4}>
             <Item sx={{height: "50vh"}}>
                <Typography variant="h6" gutterBottom sx={{}}>
-                  Aulas con mas Incidentes
+                  Aulas con más Incidentes
                </Typography>
                <Top5ClassroomsChart />
             </Item>
@@ -103,7 +103,7 @@ export const Dashboard = () => {
                }}
             >
                               <Typography variant="h6" gutterBottom sx={{}}>
-                  Categorias con mas Incidentes
+                  Categorías con más Incidentes
                </Typography>
                <RadarExample />
             </Item>
@@ -115,7 +115,7 @@ export const Dashboard = () => {
          </Grid>
          <Grid item xs={6} md={4}>
             <Item sx={{display: "flex", flexDirection: "column", height: "35vh", justifyContent: "space-evenly"}}>
-               <Typography variant="h4">Total de tickets</Typography>
+               <Typography variant="h4">Total de Incidentes</Typography>
                <TicketCount />
             </Item>
          </Grid>
