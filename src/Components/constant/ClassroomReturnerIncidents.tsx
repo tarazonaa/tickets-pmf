@@ -10,13 +10,13 @@ const ClassroomIncidentReport: React.FC = () => {
    return (
       <Box sx={{height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-evenly"}}>
          <Typography variant="h6" sx={{fontWeight: "800"}}>
-            Classroom con mas Incidentes:
+            Aulas con más Incidentes:
          </Typography>
          <Typography variant="h4">
             Id: {mostIncidentsClassroom} ({maxIncidents} incidentes)
          </Typography>
          <Typography variant="h6" sx={{fontWeight: "800"}}>
-            Classroom con menos Incidentes:
+            Aulas con menos Incidentes:
          </Typography>
          <Typography variant="h4">
             Id: {leastIncidentsClassroom} ({minIncidents} incidentes)
