@@ -1,20 +1,21 @@
 import {DataProvider, fetchUtils} from "react-admin"
 import {stringify} from "query-string"
 
-const apiUrl = "https://backend-tickets-pmf.glitch.me"
-// const apiUrl = "http://10.49.119.158:8080"
-// const apiUrl = "http://localhost:8080"
+const LOCAL = "http://localhost:8080"
+const GLITCH = "https://backend-tickets-pmf.glitch.me"
+const apiUrl = GLITCH
+
 const httpClient = async (url: string, options: any = {}) => {
    if (!options.headers) {
       options.headers = new Headers({Accept: "application/json"})
    }
    options.headers.set("Authorization", "Bearer " + localStorage.getItem("auth") || "")
-   const response = await fetchUtils.fetchJson(url, options).catch(() => {});
-   
+   const response = await fetchUtils.fetchJson(url, options).catch(() => {})
+
    if (response && response.status === 401) {
-      console.error('Unauthorized access - perhaps restricted for this user role');
+      console.error("Unauthorized access - perhaps restricted for this user role")
       // handle it - perhaps redirect or show a message
-      return response;  // or handle it differently depending on your requirements
+      return response // or handle it differently depending on your requirements
    }
    return fetchUtils.fetchJson(url, options)
 }
@@ -120,5 +121,4 @@ export const dataProvider: DataProvider = {
       })
       return {data: json.data}
    },
-   
 }
