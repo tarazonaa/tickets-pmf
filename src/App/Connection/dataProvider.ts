@@ -3,13 +3,16 @@ import {stringify} from "query-string"
 
 const LOCAL = "http://localhost:8080"
 const GLITCH = "https://backend-tickets-pmf.glitch.me"
-const apiUrl = GLITCH
+const apiUrl = LOCAL
 
 const httpClient = async (url: string, options: any = {}) => {
    if (!options.headers) {
       options.headers = new Headers({Accept: "application/json"})
    }
-   options.headers.set("Authorization", "Bearer " + localStorage.getItem("auth") || "")
+   const auth =
+      localStorage.getItem("auth") ||
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkJCVCIsInJvbGUiOiJFamVjdXRpdm8iLCJpYXQiOjE2OTc4MzczMTgsImV4cCI6MTY5Nzg0MDkxOH0.2Fg4vtOFeuDhe5eOHcrV93-rlGCWx1OuPEAtaMeZb0U"
+   options.headers.set("Authorization", "Bearer " + auth)
    const response = await fetchUtils.fetchJson(url, options).catch(() => {})
 
    if (response && response.status === 401) {
@@ -49,6 +52,7 @@ export const dataProvider: DataProvider = {
       }
       const url = `${apiUrl}/${resource}`
       const {json} = await httpClient(url)
+      console.log(json)
       return {data: json.data}
    },
 
